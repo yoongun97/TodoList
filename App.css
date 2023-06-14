@@ -1,0 +1,78 @@
+.layout {
+  background-color: purple;
+
+  max-width: 1200px;
+  min-width: 800px;
+
+  margin: 0 auto;
+}
+
+.title {
+  background-color: pink;
+
+  font-size: 20px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.addTodo {
+  background-color: gray;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
+.addTodo > input {
+  margin-left: 10px;
+  margin-right: 10px;
+
+  width: 200px;
+  height: 35px;
+
+  border-radius: 10px;
+}
+
+.addTodo > button {
+  float: right;
+  margin: auto 20px auto 0;
+
+  padding: 10px 30px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: white;
+  background-color: black;
+}
+
+.layout > h3 {
+  margin-left: 20px;
+}
+
+.todoList {
+  padding: 20px;
+  /* display: flex; */
+  gap: 12px;
+
+  background-color: beige;
+}
+
+.todoCard {
+  width: 300px;
+  height: 150px;
+
+  border: 4px solid green;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btns {
+  background-color: yellow;
+}
