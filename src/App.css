@@ -1,0 +1,131 @@
+.layout {
+  /* background-color: #dcedc9; */
+
+  max-width: 1200px;
+  min-width: 800px;
+
+  margin: 0 auto;
+}
+
+.mainTitle {
+  /* background-color: pink; */
+
+  font-size: 30px;
+  font-weight: bold;
+  color: #687b48;
+
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+
+  margin-bottom: 20px;
+}
+
+.addTodo {
+  /* background-color: #a4b164; */
+  width: 80%;
+
+  border-radius: 40px;
+
+  /* border: 1px solid black; */
+  box-shadow: 1px 1px 5px gray;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+
+  margin-left: 20px;
+}
+
+.addTodo > input {
+  margin-left: 10px;
+  margin-right: 10px;
+
+  width: 200px;
+  height: 35px;
+
+  border-radius: 10px;
+}
+
+.addTodo > button {
+  float: right;
+  margin: auto 20px auto 0;
+
+  padding: 10px 30px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: white;
+  background-color: black;
+}
+
+.addTodo > button:hover {
+  background-color: gray;
+}
+
+.cardList {
+  border: 1px solid gray;
+  border-radius: 10px;
+
+  margin-top: 50px;
+}
+
+.cardList > h3 {
+  margin-left: 20px;
+
+  color: #687b48;
+  /* background-color: #5C8A9F; */
+}
+
+.todoList {
+  padding: 20px;
+  display: flex;
+  gap: 12px;
+
+  /* background-color: beige; */
+}
+
+.todoCard {
+  width: 300px;
+  height: 150px;
+
+  /* background-color: #f0a755; */
+
+  box-shadow: 1px 1px 5px gray;
+
+  /* border: 4px solid green; */
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btns > button {
+  padding: 10px 30px;
+
+  margin: 20px 3px 20px 3px;
+
+  border-radius: 10px;
+  border-width: 3px;
+
+  width: 130px;
+
+  background-color: white;
+
+  cursor: pointer;
+}
+
+.btns > button:hover {
+  font-size: 15px;
+}
+
+.clearBtn {
+  border-color: green;
+}
+
+.deleteBtn {
+  border-color: red;
+}
