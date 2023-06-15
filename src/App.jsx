@@ -67,7 +67,10 @@ function App() {
 
   return (
     <div className="layout">
-      <header className="mainTitle">My Todo List React</header>
+      <div className="title">
+        <p className="mainTitle">My Todo List</p>
+        <p className="subTitle">React</p>
+      </div>
       <div className="addTodo">
         제목
         <input value={title} onChange={newTitleHandler} />
