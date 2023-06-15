@@ -97,7 +97,7 @@
 }
 
 .todoList {
-  /* padding: 20px; */
+  padding: 10px;
   display: flex;
   gap: 12px;
 

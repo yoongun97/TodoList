@@ -11,8 +11,8 @@ function App() {
     },
   ]);
 
-  const [title, setTitle] = useState(" ");
-  const [body, setBody] = useState(" ");
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const [isDone] = useState(false);
 
   // input값 추가
@@ -25,16 +25,25 @@ function App() {
   };
 
   // 추가 버튼 클릭 시
-  const clickAddButtonHandler = () => {
-    const newTodo = {
-      id: todos.length + 1,
-      title,
-      body,
-      isDone,
-    };
-    setTodos([...todos, newTodo]);
-    setTitle("");
-    setBody("");
+  const clickAddButtonHandler = (e) => {
+    e.preventDefault();
+
+    if (title.length === 0) {
+      alert("제목을 입력해주세요.");
+    } else if (body.length === 0) {
+      alert("내용을 입력해주세요");
+    } else {
+      const newTodo = {
+        id: todos.length + 1,
+        title,
+        body,
+        isDone,
+      };
+
+      setTodos([...todos, newTodo]);
+      setTitle("");
+      setBody("");
+    }
   };
 
   // 삭제 버튼 클릭 시
@@ -92,6 +101,7 @@ function App() {
                   item={item}
                   clickRemoveButtonHandler={clickRemoveButtonHandler}
                   clickDoneButtonHandler={clickDoneButtonHandler}
+                  clickCancelButtonHandler={clickCancelButtonHandler}
                 />
               );
             })}
@@ -104,10 +114,11 @@ function App() {
             })
             .map((item) => {
               return (
-                <Asis
+                <Todo
                   key={item.id}
                   item={item}
                   clickRemoveButtonHandler={clickRemoveButtonHandler}
+                  clickDoneButtonHandler={clickDoneButtonHandler}
                   clickCancelButtonHandler={clickCancelButtonHandler}
                 />
               );
@@ -119,7 +130,12 @@ function App() {
 }
 
 // 진행중인 TodoList
-const Todo = ({ item, clickRemoveButtonHandler, clickDoneButtonHandler }) => {
+const Todo = ({
+  item,
+  clickRemoveButtonHandler,
+  clickDoneButtonHandler,
+  clickCancelButtonHandler,
+}) => {
   return (
     <div key={item.id} className="todoCard">
       <h3>{item.title}</h3>
@@ -131,39 +147,40 @@ const Todo = ({ item, clickRemoveButtonHandler, clickDoneButtonHandler }) => {
         >
           삭제하기
         </button>
-        <button
-          className="clearBtn"
-          onClick={() => clickDoneButtonHandler(item.id)}
-        >
-          완료
-        </button>
+        <ButtonSelect
+          item={item}
+          clickDoneButtonHandler={clickDoneButtonHandler}
+          clickCancelButtonHandler={clickCancelButtonHandler}
+        />
       </div>
     </div>
   );
 };
 
-// 완료된 Asis
-const Asis = ({ item, clickRemoveButtonHandler, clickCancelButtonHandler }) => {
-  return (
-    <div key={item.id} className="todoCard">
-      <h3>{item.title}</h3>
-      {item.body}
-      <div className="btns">
-        <button
-          className="deleteBtn"
-          onClick={() => clickRemoveButtonHandler(item.id)}
-        >
-          삭제하기
-        </button>
-        <button
-          className="clearBtn"
-          onClick={() => clickCancelButtonHandler(item.id)}
-        >
-          취소
-        </button>
-      </div>
-    </div>
-  );
+const ButtonSelect = ({
+  item,
+  clickDoneButtonHandler,
+  clickCancelButtonHandler,
+}) => {
+  if (item.isDone === true) {
+    return (
+      <button
+        className="clearBtn"
+        onClick={() => clickCancelButtonHandler(item.id)}
+      >
+        취소
+      </button>
+    );
+  } else {
+    return (
+      <button
+        className="clearBtn"
+        onClick={() => clickDoneButtonHandler(item.id)}
+      >
+        완료
+      </button>
+    );
+  }
 };
 
 export default App;
