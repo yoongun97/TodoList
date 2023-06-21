@@ -1,6 +1,61 @@
 import React, { useState } from "react";
-import "./App.css";
 import Todo from "./components/Todo";
+import Input from "components/Input";
+import { styled } from "styled-components";
+
+const StLayout = styled.div`
+  max-width: 1200px;
+  min-width: 800px;
+
+  margin: 0 auto;
+`;
+
+const TitleBox = styled.header`
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  margin-bottom: 20px;
+
+  justify-content: space-between;
+
+  box-shadow: 1px 1px 5px gray;
+`;
+
+const StTitle = styled.p`
+  font-weight: bold;
+  color: #687b48;
+  font-size: ${(props) => props.fontSize};
+  margin-top: ${(props) => props.marginTop};
+`;
+
+const StCardContainer = styled.div`
+  border: 1px solid gray;
+  border-radius: 10px;
+
+  background-color: beige;
+
+  margin-top: 20px;
+`;
+
+const StCardTitle = styled.h3`
+  margin-left: 20px;
+
+  color: #687b48;
+`;
+
+const StCardList = styled.div`
+  padding: 10px;
+  display: flex;
+  gap: 12px;
+
+  flex-wrap: wrap;
+`;
 
 function App() {
   const [todos, setTodos] = useState([
@@ -12,57 +67,20 @@ function App() {
     },
   ]);
 
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [isDone] = useState(false);
-
-  // input값 추가
-  const newTitleHandler = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const newBodyHandler = (event) => {
-    setBody(event.target.value);
-  };
-
-  // 추가 버튼 클릭 시
-  const clickAddButtonHandler = (e) => {
-    e.preventDefault();
-
-    const newTodo = {
-      id: todos.length + 1,
-      title,
-      body,
-      isDone,
-    };
-
-    if (title.length === 0) {
-      alert("제목을 입력해주세요.");
-    } else if (body.length === 0) {
-      alert("내용을 입력해주세요");
-    } else {
-      setTodos([...todos, newTodo]);
-      setTitle("");
-      setBody("");
-    }
-  };
-
   return (
-    <div className="layout">
-      <header className="title">
-        <p className="mainTitle">My Todo List</p>
-        <p className="subTitle">React</p>
-      </header>
-      <div className="addTodo">
-        제목
-        <input value={title} onChange={newTitleHandler} />
-        내용
-        <input value={body} onChange={newBodyHandler} />
-        <button onClick={clickAddButtonHandler}>추가하기</button>
-      </div>
-      <div className="cardList">
-        <h3>Working..🔥</h3>
-        <div className="todoList">
+    <StLayout>
+      <TitleBox>
+        <StTitle fontSize="30px" marginTop="10px">
+          My Todo List
+        </StTitle>
+        <StTitle fontSize="20px" marginTop="20px">
+          React
+        </StTitle>
+      </TitleBox>
+      <Input todos={todos} setTodos={setTodos} />
+      <StCardContainer>
+        <StCardTitle>Working..🔥</StCardTitle>
+        <StCardList>
           {todos
             .filter((item) => {
               return item.isDone === false;
@@ -77,9 +95,9 @@ function App() {
                 />
               );
             })}
-        </div>
-        <h3>Done..!🎉</h3>
-        <div className="todoList">
+        </StCardList>
+        <StCardTitle>Done..!🎉</StCardTitle>
+        <StCardList>
           {todos
             .filter((item) => {
               return item.isDone === true;
@@ -94,9 +112,9 @@ function App() {
                 />
               );
             })}
-        </div>
-      </div>
-    </div>
+        </StCardList>
+      </StCardContainer>
+    </StLayout>
   );
 }
 

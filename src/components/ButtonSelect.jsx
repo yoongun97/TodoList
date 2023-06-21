@@ -1,20 +1,32 @@
-const ButtonSelect = ({ item, todos, setTodos }) => {
-  //완료 버튼 클릭시
-  const clickDoneButtonHandler = (id) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, isDone: true };
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-  };
+import { styled } from "styled-components";
 
-  //취소 버튼 클릭시
-  const clickCancelButtonHandler = (id) => {
+const StBtn = styled.button`
+  padding: 10px 30px;
+
+  margin: 20px 3px 20px 3px;
+
+  border-radius: 10px;
+  border-width: 3px;
+
+  width: 130px;
+
+  background-color: white;
+
+  cursor: pointer;
+
+  &:hover {
+    font-size: 15px;
+  }
+
+  border-color: ${(props) => props.borderColor};
+`;
+
+const ButtonSelect = ({ item, todos, setTodos }) => {
+  // 완료/취소 버튼 클릭시
+  const clickUpdateButtonHandler = (id) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
-        return { ...todo, isDone: false };
+        return { ...todo, isDone: !todo.isDone };
       }
       return todo;
     });
@@ -23,21 +35,21 @@ const ButtonSelect = ({ item, todos, setTodos }) => {
 
   if (item.isDone === true) {
     return (
-      <button
-        className="clearBtn"
-        onClick={() => clickCancelButtonHandler(item.id)}
+      <StBtn
+        borderColor="green"
+        onClick={() => clickUpdateButtonHandler(item.id)}
       >
         취소
-      </button>
+      </StBtn>
     );
   } else {
     return (
-      <button
-        className="clearBtn"
-        onClick={() => clickDoneButtonHandler(item.id)}
+      <StBtn
+        borderColor="green"
+        onClick={() => clickUpdateButtonHandler(item.id)}
       >
         완료
-      </button>
+      </StBtn>
     );
   }
 };
