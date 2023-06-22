@@ -1,6 +1,6 @@
 import ButtonSelect from "./ButtonSelect";
 import { styled } from "styled-components";
-import { Post } from "redux/modules/todoList";
+import { deleteTodo } from "redux/modules/todoList";
 import { useDispatch } from "react-redux";
 
 const StBox = styled.div`
@@ -47,8 +47,7 @@ const Todo = ({ item, todos}) => {
 
   // 삭제 버튼 클릭 시
   const clickRemoveButtonHandler = (id) => {
-    const newTodos = todos.filter((item) => item.id !== id);
-    dispatch(Post(newTodos))
+    dispatch(deleteTodo(id))
   };
 
   return (

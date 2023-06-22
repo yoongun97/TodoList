@@ -1,10 +1,8 @@
 
 // action value
   const INPUT = "todoList/INPUT"
-  const POST = "todoList/POST"
   const DELETE = "todoList/DELETE"
-  // const POST = "todoList/POST"
-  // const POST = "todoList/POST"
+  const TOGGLE = "todoList/TOGGLE"
 
  // action creator
   export const addTodo = (payload) => {
@@ -14,16 +12,17 @@
     }
   }
 
-  export const Post = (payload) => {
+
+  export const deleteTodo = (payload) => {
     return{
-      type: POST,
+      type: DELETE,
       payload: payload
     }
   }
 
-  export const deleteTodo = (payload) => {
+  export const toggleTodo = (payload) => {
     return{
-      type: POST,
+      type: TOGGLE,
       payload: payload
     }
   }
@@ -42,12 +41,18 @@ const todoList = (state = initialState, action) => {
   switch (action.type) {
     case INPUT: 
       return [...state, action.payload]
+      
     case DELETE:
-      return action.payload
-    case POST:
-      return action.payload
-    // case POST:
-    //   return action.payload
+      return state.filter((item) => item.id !== action.payload)
+
+    case TOGGLE:
+      return state.map((item) => {
+        if (item.id === action.payload) {
+          return { ...item, isDone: !item.isDone };
+        }
+        return item;
+      })
+
     default:
       return state;
   }

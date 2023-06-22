@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { Post } from "redux/modules/todoList";
+import { toggleTodo } from "redux/modules/todoList";
 import { useDispatch } from "react-redux";
 
 const StBtn = styled.button`
@@ -29,13 +29,8 @@ const ButtonSelect = ({ item, todos }) => {
 
   // 완료/취소 버튼 클릭시
   const clickUpdateButtonHandler = (id) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, isDone: !todo.isDone };
-      }
-      return todo;
-    });
-    dispatch(Post(updatedTodos))
+  
+    dispatch(toggleTodo(id))
   };
 
   if (item.isDone === true) {
