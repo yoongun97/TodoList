@@ -1,5 +1,7 @@
 import ButtonSelect from "./ButtonSelect";
 import { styled } from "styled-components";
+import { Post } from "redux/modules/todoList";
+import { useDispatch } from "react-redux";
 
 const StBox = styled.div`
   min-width: 300px;
@@ -39,11 +41,14 @@ const StBtn = styled.button`
 `;
 
 // 진행중인 TodoList
-const Todo = ({ item, todos, setTodos }) => {
+const Todo = ({ item, todos}) => {
+
+  const dispatch = useDispatch()
+
   // 삭제 버튼 클릭 시
   const clickRemoveButtonHandler = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
+    const newTodos = todos.filter((item) => item.id !== id);
+    dispatch(Post(newTodos))
   };
 
   return (
@@ -57,7 +62,7 @@ const Todo = ({ item, todos, setTodos }) => {
         >
           삭제하기
         </StBtn>
-        <ButtonSelect item={item} todos={todos} setTodos={setTodos} />
+        <ButtonSelect item={item} todos={todos} />
       </div>
     </StBox>
   );

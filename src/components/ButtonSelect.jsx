@@ -1,4 +1,6 @@
 import { styled } from "styled-components";
+import { Post } from "redux/modules/todoList";
+import { useDispatch } from "react-redux";
 
 const StBtn = styled.button`
   padding: 10px 30px;
@@ -21,7 +23,10 @@ const StBtn = styled.button`
   border-color: ${(props) => props.borderColor};
 `;
 
-const ButtonSelect = ({ item, todos, setTodos }) => {
+const ButtonSelect = ({ item, todos }) => {
+
+  const dispatch = useDispatch()
+
   // 완료/취소 버튼 클릭시
   const clickUpdateButtonHandler = (id) => {
     const updatedTodos = todos.map((todo) => {
@@ -30,7 +35,7 @@ const ButtonSelect = ({ item, todos, setTodos }) => {
       }
       return todo;
     });
-    setTodos(updatedTodos);
+    dispatch(Post(updatedTodos))
   };
 
   if (item.isDone === true) {

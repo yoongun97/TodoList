@@ -1,6 +1,8 @@
 import uuid from "react-uuid";
 import { useState } from "react";
 import { styled } from "styled-components";
+import { addTodo } from "redux/modules/todoList";
+import { useDispatch } from "react-redux";
 
 const StAddTodo = styled.div`
   width: 80%;
@@ -45,7 +47,7 @@ const StAdBtn = styled.button`
 `;
 
 // 추가 기능
-const Input = ({ todos, setTodos }) => {
+const Input = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [isDone] = useState(false);
@@ -58,6 +60,8 @@ const Input = ({ todos, setTodos }) => {
   const newBodyHandler = (event) => {
     setBody(event.target.value);
   };
+
+  const dispatch = useDispatch()
 
   // 추가 버튼 클릭 시
   const clickAddButtonHandler = (e) => {
@@ -75,7 +79,7 @@ const Input = ({ todos, setTodos }) => {
     } else if (body.length === 0) {
       alert("내용을 입력해주세요");
     } else {
-      setTodos([...todos, newTodo]);
+      dispatch(addTodo(newTodo))
       setTitle("");
       setBody("");
     }

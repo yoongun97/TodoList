@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import Todo from "./components/Todo";
 import Input from "components/Input";
 import { styled } from "styled-components";
+import { useSelector } from "react-redux";
 
 const StLayout = styled.div`
   max-width: 1200px;
@@ -58,14 +58,11 @@ const StCardList = styled.div`
 `;
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 0,
-      title: "리액트 공부하기",
-      body: "리액트 기초를 공부해봅시다.",
-      isDone: false,
-    },
-  ]);
+
+
+  const todos = useSelector((state)=>{
+    return state.todoList
+  })
 
   return (
     <StLayout>
@@ -77,21 +74,21 @@ function App() {
           React
         </StTitle>
       </TitleBox>
-      <Input todos={todos} setTodos={setTodos} />
+      <Input todos={todos} 
+
+       />
       <StCardContainer>
         <StCardTitle>Working..🔥</StCardTitle>
         <StCardList>
           {todos
-            .filter((item) => {
-              return item.isDone === false;
-            })
+            .filter((item) => !item.isDone)
             .map((item) => {
               return (
                 <Todo
                   key={item.id}
                   item={item}
                   todos={todos}
-                  setTodos={setTodos}
+
                 />
               );
             })}
@@ -99,16 +96,14 @@ function App() {
         <StCardTitle>Done..!🎉</StCardTitle>
         <StCardList>
           {todos
-            .filter((item) => {
-              return item.isDone === true;
-            })
+            .filter((item) => item.isDone)
             .map((item) => {
               return (
                 <Todo
                   key={item.id}
                   item={item}
                   todos={todos}
-                  setTodos={setTodos}
+
                 />
               );
             })}
