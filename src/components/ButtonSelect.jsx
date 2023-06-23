@@ -24,34 +24,21 @@ const StBtn = styled.button`
 `;
 
 const ButtonSelect = ({ item, todos }) => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // 완료/취소 버튼 클릭시
   const clickUpdateButtonHandler = (id) => {
-  
-    dispatch(toggleTodo(id))
+    dispatch(toggleTodo(id));
   };
 
-  if (item.isDone === true) {
-    return (
-      <StBtn
-        borderColor="green"
-        onClick={() => clickUpdateButtonHandler(item.id)}
-      >
-        취소
-      </StBtn>
-    );
-  } else {
-    return (
-      <StBtn
-        borderColor="green"
-        onClick={() => clickUpdateButtonHandler(item.id)}
-      >
-        완료
-      </StBtn>
-    );
-  }
+  return (
+    <StBtn
+      borderColor="green"
+      onClick={() => clickUpdateButtonHandler(item.id)}
+    >
+      {item.isDone ? "취소" : "완료"}
+    </StBtn>
+  );
 };
 
 export default ButtonSelect;

@@ -13,42 +13,39 @@ const StBox = styled.div`
   box-shadow: 1px 1px 5px gray;
 
   border-radius: 10px;
-/* 
+  /* 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column; */
 
-  padding: 20px
+  padding: 20px;
 `;
 
 const StTitleBox = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  margin-bottom: 10px
-
-`
+  margin-bottom: 10px;
+`;
 
 const StTitleBtn = styled.button`
   padding: 5px 20px;
 
   border: none;
-  
 
   width: 100px;
   height: 35px;
 
   background-color: white;
-    float: right;
-
+  float: right;
 
   cursor: pointer;
 
   &:hover {
-    font-size: 14px
+    font-size: 14px;
   }
-`
+`;
 
 const StBtn = styled.button`
   padding: 10px 30px;
@@ -72,13 +69,12 @@ const StBtn = styled.button`
 `;
 
 // 진행중인 TodoList
-const Todo = ({ item, todos}) => {
-
-  const dispatch = useDispatch()
+const Todo = ({ item, todos }) => {
+  const dispatch = useDispatch();
 
   // 삭제 버튼 클릭 시
   const clickRemoveButtonHandler = (id) => {
-    dispatch(deleteTodo(id))
+    dispatch(deleteTodo(id));
   };
 
   // 상세보기 버튼 클릭 시
@@ -88,9 +84,13 @@ const Todo = ({ item, todos}) => {
     <StBox>
       <StTitleBox>
         <h3>{item.title}</h3>
-        <StTitleBtn onClick={() => {
-          navigate(`/detail/${item.id}`)
-        }}>상세보기</StTitleBtn>
+        <StTitleBtn
+          onClick={() => {
+            navigate(`/detail/${item.id}`);
+          }}
+        >
+          상세보기
+        </StTitleBtn>
       </StTitleBox>
       {item.body}
       <div className="btns">

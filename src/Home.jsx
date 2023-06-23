@@ -58,11 +58,9 @@ const StCardList = styled.div`
 `;
 
 function Home() {
-
-
-  const todos = useSelector((state)=>{
-    return state.todoList
-  })
+  const todos = useSelector((state) => {
+    return state.todoList;
+  });
 
   return (
     <StLayout>
@@ -74,23 +72,14 @@ function Home() {
           React
         </StTitle>
       </TitleBox>
-      <Input todos={todos} 
-
-       />
+      <Input todos={todos} />
       <StCardContainer>
         <StCardTitle>Working..🔥</StCardTitle>
         <StCardList>
           {todos
             .filter((item) => !item.isDone)
             .map((item) => {
-              return (
-                <Todo
-                  key={item.id}
-                  item={item}
-                  todos={todos}
-
-                />
-              );
+              return <Todo key={item.id} item={item} todos={todos} />;
             })}
         </StCardList>
         <StCardTitle>Done..!🎉</StCardTitle>
@@ -98,14 +87,7 @@ function Home() {
           {todos
             .filter((item) => item.isDone)
             .map((item) => {
-              return (
-                <Todo
-                  key={item.id}
-                  item={item}
-                  todos={todos}
-
-                />
-              );
+              return <Todo key={item.id} item={item} todos={todos} />;
             })}
         </StCardList>
       </StCardContainer>

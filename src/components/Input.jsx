@@ -50,7 +50,7 @@ const StAdBtn = styled.button`
 const Input = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [isDone] = useState(false);
+  const isDone = false;
 
   // input값 추가
   const newTitleHandler = (event) => {
@@ -61,7 +61,7 @@ const Input = () => {
     setBody(event.target.value);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // 추가 버튼 클릭 시
   const clickAddButtonHandler = (e) => {
@@ -79,7 +79,7 @@ const Input = () => {
     } else if (body.length === 0) {
       alert("내용을 입력해주세요");
     } else {
-      dispatch(addTodo(newTodo))
+      dispatch(addTodo(newTodo));
       setTitle("");
       setBody("");
     }
